@@ -10,10 +10,11 @@ def apply_length_cap(rows: list[dict], cap_bp: int) -> list[dict]:
     for row in rows:
         source = row["source"]
         counts_before[source] = counts_before.get(source, 0) + 1
+        row["scored_length"] = row["length"]
         if row["length"] > cap_bp:
             counts_truncated[source] = counts_truncated.get(source, 0) + 1
             row["sequence"] = row["sequence"][:cap_bp]
-            row["length"] = cap_bp
+            row["scored_length"] = cap_bp
 
     for source, total in counts_before.items():
         truncated = counts_truncated.get(source, 0)

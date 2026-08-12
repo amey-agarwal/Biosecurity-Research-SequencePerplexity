@@ -31,10 +31,6 @@ How do you know this? (e.g. Claude told you, learnt from project experience)
 ===> top-level model, less compute and API access, (Project Exp)
 ===> control setup to use other models, HyenaDNA or Nucleotide Transformer, on free Colab
 
-> Sequences ? 
-===> Websites can be NCBI and Addgene (Common websites used)
-===> NCBI nuccore database pinged using Biopython Entrez (standard, rate-compliant - NCBI doesn't allow raw scrapers and will get you IP Blocked) (trusting Claude to not get IP blocked)
-
 > Coverage
 ==> confused with representation (how well that sequence is studied in database)
 ==> how well a base has been read is coverage
@@ -56,3 +52,28 @@ Nucleotide Transformer fr free tier
 Evo2 if everything works fine (paid tier API)
 
 what is the relevance of this data to the model ?
+
+# Problems and Solutions
+1. I don't want to get IP blocked making random calls to NCBI; 
+> Use Entrez and Biopython
+
+2. Different files different comments different code to manage it;
+> SeqIo.parse does my job of fasta parsing robustly
+
+3. There might be N's in sequence, these are redundant but still part of sequence;
+> threshold as < 0.01 for #of N in sequence length
+
+4. The taxa I get; one might be in large number as compared to other; need to keep a fixed low threshold for the species
+> 50 for each taxa
+
+5. The model API calls may get inflated and up the costs, need to run a mock method of the project and check
+> crop the sequences to a fixed length [BIGGEST CAVEAT]; masked parts of the sequence that the model is asked to predict? ; NT used for start,later use Evo2
+
+6. jaxlib dependency error - pip install for nucleotide_transformer pulled a corresponding jaxlib dependency that was incompatible with the Colab framework. 
+> !pip install -U "jax[cuda12]" and restart the session
+
+7. HF_TOKEN warning - recommendatoin to use token in ntoebook run
+> COLAB secrets
+
+8. Nucleotde transformer tokenises in non-overlapping 6-mers
+> Had to run model to check the logits obtained (2, 32, 4017); managed by understanding the logits
