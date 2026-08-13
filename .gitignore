@@ -4,3 +4,6 @@ notes.md
 
 .env*
 !.env.example
+
+pyvenv/
+__pycache__

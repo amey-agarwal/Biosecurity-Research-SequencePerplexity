@@ -1,11 +1,33 @@
+import io
+import re
 from Bio import SeqIO
 
 
+def _is_low_quality_cds(description: str) -> bool:
+    if "[pseudo=true]" in description:
+        return True
+    location = re.search(r"\[location=([^\]]*)\]", description)
+    if location and ("<" in location.group(1) or ">" in location.group(1)):
+        return True
+    return False
+
+
 def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None) -> list[dict]:
+    with open(path) as f:
+        lines = f.readlines()
+    start = next(i for i, line in enumerate(lines) if line.startswith(">"))
+    cleaned = "".join(line for line in lines[start:] if line.strip())
+    handle = io.StringIO(cleaned)
+
     rows = []
     total = 0
-    for record in SeqIO.parse(path, "fasta"):
+    skipped_quality = 0
+    for record in SeqIO.parse(handle, "fasta"):
         total += 1
+        if _is_low_quality_cds(record.description):
+            skipped_quality += 1
+            continue
+
         seq = str(record.seq).upper()
         length = len(seq)
         if length == 0:
@@ -28,7 +50,8 @@ def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None) ->
             "gc_content": gc,
         })
 
+    print(f"{taxon}: {total} -> {total - skipped_quality} after pseudogene/partial-CDS filter ({skipped_quality} skipped)")
     if n_threshold is not None:
-        print(f"{taxon}: {total} -> {len(rows)} sequences after N-content filter (threshold={n_threshold})")
+        print(f"{taxon}: {total - skipped_quality} -> {len(rows)} sequences after N-content filter (threshold={n_threshold})")
 
     return rows

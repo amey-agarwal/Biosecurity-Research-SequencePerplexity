@@ -77,3 +77,9 @@ what is the relevance of this data to the model ?
 
 8. Nucleotde transformer tokenises in non-overlapping 6-mers
 > Had to run model to check the logits obtained (2, 32, 4017); managed by understanding the logits
+
+9. SSL error
+> pip install --upgrade certifi && export SSL_CERT_FILE=$(python3 -m certifi)
+
+10. Fasta file reading errors
+> parse_ncbi.py parsing the fasta file
