@@ -87,3 +87,7 @@ what is the relevance of this data to the model ?
 11. Addgene paid and access tough
 
 12. NCBI synthetic construct is natural gene with (transposon?) insertions - wrong category of comparison
+
+13. iGEM has category for each constructed sequence - experience 'Works' and is Coding sequence
+
+14. Sequence may seem correct but should end in a stop codon, be a multiple of 3 and not have any stop codons in the sequence before the last codon.

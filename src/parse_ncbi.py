@@ -43,6 +43,7 @@ def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None, so
         gc = sum(1 for base in seq if base in "GC") / non_n_length * 100
 
         rows.append({
+            "id": record.id,
             "sequence": seq,
             "source": source,
             "taxon": taxon,
