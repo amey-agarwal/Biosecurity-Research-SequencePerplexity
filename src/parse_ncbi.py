@@ -12,7 +12,7 @@ def _is_low_quality_cds(description: str) -> bool:
     return False
 
 
-def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None) -> list[dict]:
+def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None, source: str = "ncbi_natural") -> list[dict]:
     with open(path) as f:
         lines = f.readlines()
     start = next(i for i, line in enumerate(lines) if line.startswith(">"))
@@ -44,7 +44,7 @@ def parse_ncbi_fasta(path: str, taxon: str, n_threshold: float | None = None) ->
 
         rows.append({
             "sequence": seq,
-            "source": "ncbi_natural",
+            "source": source,
             "taxon": taxon,
             "length": length,
             "gc_content": gc,

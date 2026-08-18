@@ -6,9 +6,14 @@ def build_ncbi_query(taxon: str) -> str:
     return f"{taxon}[Organism] AND biomol_genomic[PROP] AND srcdb_refseq[PROP] AND cds[FKEY]"
 
 
-def fetch_ncbi_cds(taxon: str, email: str, retmax: int = 50, out_dir: str = "data/raw/ncbi") -> str:
+def build_synthetic_construct_query() -> str:
+    return '"synthetic construct"[Organism] AND biomol_genomic[PROP] AND cds[FKEY]'
+
+
+def fetch_ncbi_cds(taxon: str, email: str, retmax: int = 50, out_dir: str = "data/raw/ncbi", query: str | None = None) -> str:
     Entrez.email = email
-    query = build_ncbi_query(taxon)
+    if query is None:
+        query = build_ncbi_query(taxon)
 
     search = Entrez.esearch(db="nuccore", term=query, retmax=retmax)
     ids = Entrez.read(search)["IdList"]

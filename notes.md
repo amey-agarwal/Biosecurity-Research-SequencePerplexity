@@ -83,3 +83,7 @@ what is the relevance of this data to the model ?
 
 10. Fasta file reading errors
 > parse_ncbi.py parsing the fasta file
+
+11. Addgene paid and access tough
+
+12. NCBI synthetic construct is natural gene with (transposon?) insertions - wrong category of comparison
