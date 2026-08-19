@@ -12,7 +12,6 @@ If gene sequence has LOW NATURAL PLAUSABILTY but HIGH FUNCTIONALITY, then it cou
 
 # Results
 
-<iframe src="notebooks/graph_results.html" width="100%" height="400px" frameborder="0"></iframe>
-
+![Sequence perplexity results](src/static/images/Graph-SequencePerplexity.png)
 
 Read notes.md for more info
