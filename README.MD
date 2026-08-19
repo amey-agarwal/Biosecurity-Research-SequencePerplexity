@@ -13,6 +13,7 @@ If gene sequence has LOW NATURAL PLAUSABILTY but HIGH FUNCTIONALITY, then it cou
 # Results
 
 **Final pilot scores: engineered vs. natural sequences**
+
 Model: Nucleotide Transformer
 
 ![Sequence perplexity results](src/static/images/Graph-SequencePerplexity.png)
