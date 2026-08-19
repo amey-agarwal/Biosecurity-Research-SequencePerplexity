@@ -3,8 +3,6 @@
 If a gene sequence has low sequence relevance to the training composition but high functionality, then it can be engineered (and potentially harmful), or it is an underrepresented or newly found gene that the model isn't trained on. 
 
 
-Biosecurity risk; AI safety 
-
 Making a graph with low and high functional scores on the y-axis and probability on the x-axis.
 Square means well-studied, triangle means understudied.
 Red colour: engineered; green colour: natural. 
@@ -25,8 +23,6 @@ Questions that I should get answers to
 
 International Gene Synthesis consortium helps to check if a particular gene is of concern. This is the baseline. If it works well for every engineered gene, then it is a good baseline and can be used for checking engineered genes, doesn't work well, then it can be argued against. 
 
-Every single choice gets logged
-How do you know this? (e.g. Claude told you, learnt from project experience)
 > Model ? 
 ===> top-level model, less compute and API access, (Project Exp)
 ===> control setup to use other models, HyenaDNA or Nucleotide Transformer, on free Colab

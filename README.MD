@@ -1,12 +1,18 @@
 # Biosecurity Research - Sequence Perplexity Project
 
-<h1>Question in Question</h1>
-Can the Bio model give low likelihood scores of sequence relevance to the training composition?
+---
+
+**Can the Bio model give low likelihood scores of sequence relevance to the training composition?**
+
+If gene sequence has LOW NATURAL PLAUSABILTY but HIGH FUNCTIONALITY, then it could be ```engineered``` (and potentially harmful). 
+
+> Themes: Biosecurity risk; AI safety
 
 ---
 
-If a gene sequence has low sequence relevance to the training composition but high functionality, then it can be engineered (and potentially harmful), or it is an underrepresented or newly found gene that the model isn't trained on. 
+# Results
 
----
+<iframe src="notebooks/graph_results.html" width="100%" height="400px" frameborder="0"></iframe>
 
-> Read notes.md for more info
+
+Read notes.md for more info
